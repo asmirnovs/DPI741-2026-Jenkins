@@ -83,17 +83,14 @@ def deploy(String env, String port) {
     // Delete pm2
     bat "pm2 delete greetings-app-${env} || exit /b 0"
     // Palaist servisu izmantojot pm2
-    bat 'dir'
-    bat 'dir venv'
-    bat 'dir venv\\Scripts'
-    bat "pm2 start app.py --name greetings-app-${env} --interpreter %CD%\\venv\\Scripts\\python.exe -- --port ${port}"
+    bat "pm2 start app.py --name greetings-app-${env} --interpreter %CD%\\venv\\Scripts\\python -- --port ${port}"
 
     echo "Deployment to ${env} environment finished successfully."
 }
 
 def test(String env) {
     echo "Testing on ${env} environment has started..."
-    
+
     // Veikt klonēšanu repozitorijam
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/course-js-api-framework.git'
     // Izpildīt npm install
@@ -102,4 +99,3 @@ def test(String env) {
     bat "npm run greetings greetings_${env}"
 
     echo "Testing on ${env} environment finished successfully."
-}
