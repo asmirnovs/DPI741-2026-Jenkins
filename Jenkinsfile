@@ -65,9 +65,11 @@ pipeline {
             }
         }
         stage('tests-on-prod') {
+            steps {
                 script {
                     test("prod")
                 }
+            }
         }
     }
 }
