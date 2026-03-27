@@ -99,7 +99,6 @@ def test(String env) {
     // Izpildīt npm install
     bat 'npm install'
     // Izpildīt npm run
-    bat 'pm2 list'
     bat "npm run greetings greetings_${env}"
 
     echo "Testing on ${env} environment finished successfully."
