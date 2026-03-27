@@ -83,7 +83,8 @@ def deploy(String env, String port) {
     // Delete pm2
     bat "pm2 delete greetings-app-${env} || exit /b 0"
     // Palaist servisu izmantojot pm2
-    bat "pm2 start app.py --name greetings-app-${env} --interpreter python -- --port ${port}"
+    bar 'dir'
+    bat "pm2 start app.py --name greetings-app-${env} --interpreter venv\\Scripts\\python.exe -- --port ${port}"
 
     echo "Deployment to ${env} environment finished successfully."
 }
