@@ -76,31 +76,27 @@ pipeline {
 
 
 def deploy(String env, String port) {
-    dir("deploy-${env}") {
-        echo "Deployment to ${env} environment has started..."
+    echo "Deployment to ${env} environment has started..."
 
-        // Veikt klonēšanu repozitorijam
-        git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
-        // Delete pm2
-        bat "pm2 delete greetings-app-${env} || exit /b 0"
-        // Palaist servisu izmantojot pm2
-        bat "pm2 start app.py --name greetings-app-${env} --interpreter %CD%\\venv\\Scripts\\python.exe -- --port ${port}"
+    // Veikt klonēšanu repozitorijam
+    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
+    // Delete pm2
+    bat "pm2 delete greetings-app-${env} || exit /b 0"
+    // Palaist servisu izmantojot pm2
+    bat "pm2 start app.py --name greetings-app-${env} --interpreter %CD%\\venv\\Scripts\\python.exe -- --port ${port}"
 
-        echo "Deployment to ${env} environment finished successfully."
-    }
+    echo "Deployment to ${env} environment finished successfully."
 }
 
 def test(String env) {
-    dir("tests-${env}") {
-        echo "Testing on ${env} environment has started..."
+    echo "Testing on ${env} environment has started..."
 
-        // Veikt klonēšanu repozitorijam
-        git branch: 'main', poll: false, url: 'https://github.com/mtararujs/course-js-api-framework.git'
-        // Izpildīt npm install
-        bat 'npm install'
-        // Izpildīt npm run
-        bat "npm run greetings greetings_${env}"
+    // Veikt klonēšanu repozitorijam
+    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/course-js-api-framework.git'
+    // Izpildīt npm install
+    bat 'npm install'
+    // Izpildīt npm run
+    bat "npm run greetings greetings_${env}"
 
-        echo "Testing on ${env} environment finished successfully."
-    }
+    echo "Testing on ${env} environment finished successfully."
 }
