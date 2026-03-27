@@ -9,7 +9,7 @@ pipeline {
                 bat 'dir' //aka ls
 
                 // Izveidot venv un instalēt bibliotēkas
-                bat '"C:\Program Files\Python\python.exe" -m venv venv'
+                bat '"C:\\Program Files\\Python\\python.exe" -m venv venv'
                 bat 'venv\\Scripts\\python -m pip install -r requirements.txt'
 
                 echo 'Dependencies installed.'
