@@ -81,7 +81,7 @@ def deploy(String env, String port) {
     // Veikt klonēšanu repozitorijam
     git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
     // Delete pm2
-    bat "pm2 delete greetings-app-${envName} || exit /b 0"
+    bat "pm2 delete greetings-app-${env} || exit /b 0"
     // Palaist servisu izmantojot pm2
     bat "pm2 start app.py --name greetings-app-${env} --interpreter venv\\Scripts\\python -- --port ${port}"
 
