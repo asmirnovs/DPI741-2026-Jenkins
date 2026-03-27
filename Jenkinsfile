@@ -99,3 +99,4 @@ def test(String env) {
     bat "npm run greetings greetings_${env}"
 
     echo "Testing on ${env} environment finished successfully."
+}
